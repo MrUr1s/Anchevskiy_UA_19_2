@@ -15,7 +15,12 @@
       "ProjectGuid": "1cf32788-254e-90d5-06f1-41e91f78de3d",
       "DisplayName": "Unity.TextMeshPro",
       "ColorIndex": 1
+    },
+    "5fb708b2-d7de-89a2-c2d4-274aeb83fe0d": {
+      "ProjectGuid": "5fb708b2-d7de-89a2-c2d4-274aeb83fe0d",
+      "DisplayName": "Unity.PlasticSCM.Editor",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 2
+  "NextColorIndex": 3
 }
