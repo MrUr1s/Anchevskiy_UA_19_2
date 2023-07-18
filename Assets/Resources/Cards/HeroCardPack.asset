@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4cf6de20b2646f4193e999d2dee71e4, type: 3}
+  m_Name: HeroCardPack
+  m_EditorClassIdentifier: 
+  _isConstruct: 1
+  _sideType: 0
+  _cost: 0
+  _cards:
+  - Id: 1
+    Cost: 0
+    Description: 
+    Name: Anduin
+    Texture: {fileID: 2800000, guid: 288db5d755557dd4bb1d79192d0c0dd7, type: 3}
+    Attack: 0
+    Health: 30
+    Type: 254
+  - Id: 2
+    Cost: 0
+    Description: 
+    Name: Garrosh
+    Texture: {fileID: 2800000, guid: 3df8457fcbadd3f4f807bdffed86dbac, type: 3}
+    Attack: 0
+    Health: 30
+    Type: 254
+  - Id: 3
+    Cost: 0
+    Description: 
+    Name: Jaina
+    Texture: {fileID: 2800000, guid: 819bbd61ab1a48d40ab0beb939ea7a5d, type: 3}
+    Attack: 0
+    Health: 30
+    Type: 254
+  - Id: 4
+    Cost: 0
+    Description: 
+    Name: Hemet Nesingwary
+    Texture: {fileID: 2800000, guid: 1e85b86f002fd6a43a2c87398866c10c, type: 3}
+    Attack: 0
+    Health: 20
+    Type: 254

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Players>
+  <Player TypePlayer="0">
+    <heroID>3</heroID>
+    <countCards>10</countCards>
+    <poolCardsID>
+      <id>301</id>
+      <id>301</id>
+      <id>301</id>
+      <id>301</id>
+      <id>301</id>
+      <id>301</id>
+      <id>301</id>
+      <id>301</id>
+      <id>301</id>
+      <id>301</id>
+    </poolCardsID>
+  </Player>
+  <Player TypePlayer="1">
+    <heroID>4</heroID>
+    <countCards>10</countCards>
+    <poolCardsID>
+      <id>205</id>
+      <id>601</id>
+      <id>204</id>
+      <id>503</id>
+      <id>301</id>
+      <id>701</id>
+      <id>302</id>
+      <id>203</id>
+      <id>703</id>
+      <id>404</id>
+    </poolCardsID>
+  </Player>
+</Players>
