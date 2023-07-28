@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\UITextPlayer.cs" />
+    <Compile Include="Assets\AttackedCard.cs" />
     <Compile Include="Assets\UIPlayButton.cs" />
     <Compile Include="Assets\Cards\Scripts\Enums.cs" />
     <Compile Include="Assets\Cards\Scripts\Structs.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Assets\GameUI.cs" />
     <Compile Include="Assets\UICard.cs" />
     <Compile Include="Assets\Cards\Scripts\Plugins\OneLineEditor\Runtime\SeparatorAttribute.cs" />
+    <Compile Include="Assets\AbillityEffectComponent.cs" />
     <Compile Include="Assets\Cards\Scripts\Plugins\OneLineEditor\Runtime\ExpandableAttribute.cs" />
     <Compile Include="Assets\UIMana.cs" />
     <Compile Include="Assets\Cards\Scripts\Plugins\OneLineEditor\Runtime\ArrayLengthAttribute.cs" />
@@ -104,7 +106,6 @@
     <Compile Include="Assets\SelectCards.cs" />
     <Compile Include="Assets\Cards\Scripts\Extensions.cs" />
     <Compile Include="Assets\Cards\Scripts\Plugins\OneLineEditor\Runtime\Internal\IEnumerableExtension.cs" />
-    <Compile Include="Assets\Table.cs" />
     <Compile Include="Assets\UIPage.cs" />
     <Compile Include="Assets\ManagerCard.cs" />
     <Compile Include="Assets\CardPosition.cs" />
@@ -112,7 +113,6 @@
     <Compile Include="Assets\Cards\Scripts\Plugins\Rotary Heart\SerializableDictionaryLite\References\RequiredReferences.cs" />
     <Compile Include="Assets\Content.cs" />
     <Compile Include="Assets\UIButton.cs" />
-    <Compile Include="Assets\AttackedCard.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />

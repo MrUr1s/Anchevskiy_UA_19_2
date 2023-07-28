@@ -4,13 +4,13 @@
     <heroID>3</heroID>
     <countCards>10</countCards>
     <poolCardsID>
-      <id>301</id>
-      <id>301</id>
-      <id>301</id>
-      <id>301</id>
-      <id>301</id>
-      <id>301</id>
-      <id>301</id>
+      <id>203</id>
+      <id>204</id>
+      <id>205</id>
+      <id>206</id>
+      <id>207</id>
+      <id>302</id>
+      <id>505</id>
       <id>301</id>
       <id>301</id>
       <id>301</id>
@@ -21,7 +21,7 @@
     <countCards>10</countCards>
     <poolCardsID>
       <id>205</id>
-      <id>601</id>
+      <id>502</id>
       <id>204</id>
       <id>503</id>
       <id>301</id>

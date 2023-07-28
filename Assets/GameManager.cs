@@ -11,6 +11,7 @@ namespace Managers
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance { get; private set; }
+
         [SerializeField]
         private TypePlayer _turnPlayer;
         [SerializeField]
@@ -20,21 +21,25 @@ namespace Managers
 
         public List<Hand> Hands  => _hands;
 
-        public UIMana UIMana => _uIMana; 
 
         [SerializeField]
         private List<Hand> _hands;
-
         [SerializeField]
         private List<TableComponent> _tables;
+
         [SerializeField]
         private int _turnTime = 30;
         [SerializeField]
         private TextMeshProUGUI _timeText;
+
         private Coroutine _turnCoroutine;
+
+        public UIMana UIMana => _uIMana;
+
+        public List<TableComponent> Tables => _tables; 
         [SerializeField]
         private UIMana _uIMana;
-
+        private Dictionary<TypePlayer,int> damage = new Dictionary<TypePlayer, int>();
         private void OnValidate()
         {
             _uIMana = FindObjectOfType<UIMana>();
@@ -43,6 +48,8 @@ namespace Managers
         }
         private void Awake()
         {
+            damage.Add(TypePlayer.Player1, 0);
+            damage.Add(TypePlayer.Player2, 0);
             Instance = this;
             _turnButton.onClick.AddListener(Turn);
         }
@@ -64,6 +71,7 @@ namespace Managers
         public void Turn()
         {
             StopCoroutine(_turnCoroutine);
+
             int angleY = 0;
             if (_turnPlayer == TypePlayer.Player1)
             {
@@ -76,20 +84,30 @@ namespace Managers
             }
 
             Camera.main.transform.eulerAngles = new Vector3(90, angleY, 0);
-            _hands.First(t => t.TypePlayer != _turnPlayer).ShowCardsInfo(false);
-            _hands.First(t => t.TypePlayer == _turnPlayer).ShowCardsInfo(true);
-            _hands.First(t => t.TypePlayer == _turnPlayer).AddCard();
-            _tables.ForEach(t => {
-                t.ListCard.ForEach(card => card.ChangeAttack(t.TypePlayer == _turnPlayer));
-                    t.transform.eulerAngles = new Vector3(0, angleY, 0);
 
-            });
             var player = PlayerManager.Instance.Players.First(t => t.PlayerType == _turnPlayer);
             player.ReloadMana();
             _uIMana.SetCountMana(player.ManaCount, player.MaxManaCount);
+
+            var enemyHand = _hands.First(t => t.TypePlayer != _turnPlayer);
+            enemyHand.ShowCardsInfo(false);
+
+            var selfHand = _hands.First(t => t.TypePlayer == _turnPlayer);
+            selfHand.ShowCardsInfo(true);
+
+            if (!selfHand.AddCard())
+                selfHand.HeroCard.GetDamage(damage[_turnPlayer]++);
+            selfHand.CheckCardsForAbillity();
+
+            _tables.ForEach(t => 
+            {
+                t.ListCard.ForEach(card => card.ChangeAttack(t.TypePlayer == _turnPlayer));
+                t.transform.eulerAngles = new Vector3(0, angleY, 0);
+            });
             
             _turnCoroutine = StartCoroutine(TurnFunc());
         }
+
 
         private IEnumerator TurnFunc()
         {
@@ -102,14 +120,9 @@ namespace Managers
             Turn();
         }
 
-
-        public void DestroyCard()
+        internal void GamoOver(TypePlayer typePlayer)
         {
-            _tables.ForEach(t =>
-            { 
-                
-                
-                });
+            Debug.Log(typePlayer + "Lose");
         }
     }
 }

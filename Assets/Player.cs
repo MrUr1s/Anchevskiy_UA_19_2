@@ -41,7 +41,7 @@ namespace Cards
 
         public void ReloadMana()
         {
-            if(_maxManaCount <= 10)
+            if(_maxManaCount < 10)
                 _maxManaCount++;
             _manaCount = _maxManaCount;
             

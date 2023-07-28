@@ -14,6 +14,11 @@ namespace Cards
         private const string c_ConfigPath = "//Resources//CommonCardDescription.xml";
 
         private static readonly Dictionary<uint, string> _descriptions = new Dictionary<uint, string>();
+        private static readonly List<uint>
+            _taunt = new List<uint>(),
+            _charge = new List<uint>(),
+            _battlecry = new List<uint>(),
+            _timeEffect=new List<uint>();
         private static readonly List<uint> _uncollectibleIds = new List<uint>();
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
@@ -51,10 +56,24 @@ namespace Cards
                     _descriptions.Add(id, description);
 
                     var uncollect = unit.Attribute("Uncollectible");
+                    var IsTaunt = unit.Attribute("IsTaunt");
+                    var IsCharge = unit.Attribute("IsCharge");
+                    var IsBattlecry = unit.Attribute("IsBattlecry");
+                    var IsTimeEffect= unit.Attribute("IsTimeEffect");
                     if (uncollect != null && uncollect.Value.ToLower() == "true") _uncollectibleIds.Add(id);
+                    if (IsTaunt != null && IsTaunt.Value.ToLower() == "true") _taunt.Add(id);
+                    if (IsCharge != null && IsCharge.Value.ToLower() == "true") _charge.Add(id);
+                    if (IsBattlecry != null && IsBattlecry.Value.ToLower() == "true") _battlecry.Add(id);
+                    if (IsTimeEffect != null && IsTimeEffect.Value.ToLower() == "true") _timeEffect.Add(id);
                 }
             }
         }
+
+        public static bool GetTaunt(uint id) => _taunt.Contains(id);
+        public static bool GetBattlecry(uint id) => _battlecry.Contains(id);
+        public static bool GetCharge(uint id) => _charge.Contains(id);
+        public static bool GetTimeEffect(uint id) => _timeEffect.Contains(id);
+
 
         /// <summary>
         /// Возвращает описание карты по ее идентификаторы
@@ -76,5 +95,8 @@ namespace Cards
 #endif
             return _uncollectibleIds.Contains(id);
         }
+
+
     }
+
 }

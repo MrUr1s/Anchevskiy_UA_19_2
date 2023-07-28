@@ -1380,7 +1380,7 @@ MonoBehaviour:
   _texture: {fileID: 1307249472203900899}
   _attack: {fileID: 1307249473160749871}
   _health: {fileID: 1307249473871312366}
-  _backlight: {fileID: 5290219980658122493}
+  _backlight: {fileID: 2672614026313152419}
   _cardPropertyData:
     Id: 0
     Cost: 0
@@ -1390,6 +1390,10 @@ MonoBehaviour:
     Attack: 0
     Health: 0
     Type: 0
+    IsBattlecry: 0
+    IsTaunt: 0
+    IsCharge: 0
+    IsTimeEffect: 0
   _canAttack: 0
   _defaultScale: {x: 0, y: 0, z: 0}
   _frontCard: {fileID: 1307249474052391475}
@@ -1452,7 +1456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.04445076, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -1484,7 +1488,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4036284174764665594
 RectTransform:
   m_ObjectHideFlags: 0

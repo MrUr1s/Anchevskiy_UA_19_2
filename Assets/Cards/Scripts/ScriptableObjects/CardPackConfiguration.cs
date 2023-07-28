@@ -39,7 +39,10 @@ namespace Cards.ScriptableObjects
 			{
 				Cards[i].Cost = _cost;
 				Cards[i].Description = CardUtility.GetDescriptionById(Cards[i].Id);
-			}
+                Cards[i].IsBattlecry = CardUtility.GetBattlecry(Cards[i].Id);
+                Cards[i].IsCharge = CardUtility.GetCharge(Cards[i].Id);
+                Cards[i].IsTaunt = CardUtility.GetTaunt(Cards[i].Id);
+            }
 
 			_isConstruct = true;
 		}

@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 using System;
+using UnityEngine.UI;
 
 namespace Cards
 {
@@ -14,7 +15,7 @@ namespace Cards
         public delegate void EnterCard(CardSetting cardSetting);
         public event EnterCard OnEnterCard;
         public delegate void ExitCard(CardSetting cardSetting);
-        public event EnterCard OnExitCard;
+        public event ExitCard OnExitCard;
 
         [SerializeField]
         private TypePlayer _typePlayer;
@@ -34,7 +35,7 @@ namespace Cards
         [SerializeField]
         private TextMeshPro _health;
         [SerializeField]
-        private Canvas _backlight;
+        private RawImage _backlight;
         [SerializeField]
         private CardPropertiesData _cardPropertyData;
 
@@ -46,12 +47,22 @@ namespace Cards
 
         public bool CanAttack => _canAttack; 
 
+        public bool IsTaunt => CardPropertyData.IsTaunt;
+        
         [SerializeField]
         private bool _canAttack = false;
         [SerializeField]
         private Vector3 _defaultScale;
         [SerializeField]
         private MeshRenderer _frontCard;
+
+        [SerializeField]
+        private TypeAbilityIsTarget _typeAbility;
+        public TypeAbilityIsTarget TypeAbility => _typeAbility;
+        [SerializeField]
+        private bool _isAbilityUsed = false;
+        public bool IsAbilityUsed => _isAbilityUsed;
+        public Action<TableComponent, CardSetting> Abillity { get; private set; }
 
         private void Awake()
         {
@@ -60,9 +71,23 @@ namespace Cards
         public void ChangeAttack(bool value)
         {
             _canAttack = value;
-            _backlight.gameObject.SetActive(value);
+            CheckAbillity();
         }
+        public void SetIsAbilitySelectCard(TypeAbilityIsTarget value) => _typeAbility = value;
+        public void SetAbility(Action<TableComponent, CardSetting> action) => Abillity = action;
 
+        public void OnAbilityUsed() => _isAbilityUsed = true;
+
+        public void SetCardPropertyData(int? Attack = null, int? Health=null, int? Cost = null)
+        {
+            _cardPropertyData.Attack = Attack.GetValueOrDefault(_cardPropertyData.Attack);
+            _cardPropertyData.Cost = Cost.GetValueOrDefault(_cardPropertyData.Cost);
+            _cardPropertyData.Health = Health.GetValueOrDefault(_cardPropertyData.Health);
+            Refresh();
+              
+            if(_cardPropertyData.Health<=0)
+                gameObject.SetActive(false);
+        }
         public void ReDraw(uint ID)
         {
             _cardPropertyData = Managers.ManagerCard.Instance.AddCardConf(ID);
@@ -74,7 +99,14 @@ namespace Cards
             _texture.material.mainTexture = _cardPropertyData.Texture;
             _attack.text = _cardPropertyData.Attack == 0 ? "" : _cardPropertyData.Attack.ToString();
             _health.text = _cardPropertyData.Health == 0 ? "" : _cardPropertyData.Health.ToString();
-            _backlight.gameObject.SetActive(false);
+            _backlight.color = Color.clear;
+        }
+
+        internal void ClearEvent()
+        {
+            OnExitCard = null;
+            OnClickCard = null;
+            OnEnterCard = null;
         }
 
         public void ShowCardInfo(bool value) => _frontCard.enabled = _name.enabled =
@@ -110,8 +142,21 @@ namespace Cards
         public void Refresh()
         {
             _health.text = _cardPropertyData.Health == 0 ? "" : _cardPropertyData.Health.ToString();
+            _attack.text = _cardPropertyData.Attack == 0 ? "" : _cardPropertyData.Attack.ToString();
         }
 
+        public void CheckAbillity(int Mana=-1)
+        {
+            if ((CardPropertyData.Cost <= Mana || _canAttack) && TypePlayer==Managers.GameManager.Instance.TurnPlayer)
+                _backlight.color = Color.green;
+            else
+                _backlight.color = Color.clear;
+        }
+
+        public void VisibleTarget(bool value)
+        {
+            _backlight.color = value? Color.red: Color.clear;
+        }
         private void OnDisable()
         {
             Debug.Log("Die");
@@ -120,13 +165,14 @@ namespace Cards
                 var defaultParent = dragOnDropComponent.DefaultParent;
                 if (defaultParent != null)
                 {
-                    if (defaultParent.TryGetComponent(out SortingComponent sortingComponent))
-                        sortingComponent.SortingCard();
                     if (defaultParent.TryGetComponent(out TableComponent tableComponent))
                         tableComponent.ListCard.Remove(this);
+                    if (defaultParent.TryGetComponent(out SortingComponent sortingComponent))
+                        sortingComponent.SortingCard();
                 }
             }
+        } 
+    
 
-        }
     }
 }

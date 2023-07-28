@@ -22,5 +22,9 @@ using UnityEngine;
     {
 		Player1, Player2
 	}
+	public enum TypeAbilityIsTarget:byte
+	{
+	 None, AbilityOnEnemy, AbilityOnSelf
+}
 
 

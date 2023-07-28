@@ -21,6 +21,9 @@ namespace Managers
         [SerializeField]
         private List<CardSetting> _poolCards;
 
+        [SerializeField]
+        private float _scaleSize = 1.5f;
+
         private string _Path = "Cards";
         [SerializeField]
         private List<CardPropertiesData> _cards;
@@ -35,6 +38,45 @@ namespace Managers
         public CardPropertiesData AddCardConf(uint ID)
         {
             return Cards.FirstOrDefault(t => t.Id == ID);
+        }
+
+        public CardSetting SetCard(uint id, Vector3 pos, TypePlayer typePlayer)
+        {
+            CardSetting card;
+            if (PoolCards.Any(t => !t.gameObject.activeSelf))
+            {
+                card = PoolCards.First(t => !t.gameObject.activeSelf);
+                card.SetTypePlayer(typePlayer);
+                card.ClearEvent();
+                card.OnEnterCard += Card_OnEnterCard;
+                card.OnExitCard += Card_OnExitCard;
+                card.ReDraw(id);
+            }
+            else
+            {
+                card = Instantiate(_cardSetting);
+                card.gameObject.SetActive(true);
+                card.ReDraw(id);
+                card.transform.position = pos;
+                card.SetTypePlayer(typePlayer);
+                card.OnEnterCard += Card_OnEnterCard;
+                card.OnExitCard += Card_OnExitCard;
+                _poolCards.Add(card);
+            }
+            if (!card.TryGetComponent(out DragOnDropComponent dragOnDropComponent))
+                card.gameObject.AddComponent<DragOnDropComponent>();
+            if (!card.TryGetComponent(out AttackedCard attackedCard))
+                card.gameObject.AddComponent<AttackedCard>();
+            return card;
+        }
+        private void Card_OnExitCard(CardSetting cardSetting)
+        {
+            cardSetting.transform.localScale = cardSetting.DefaultScale;
+        }
+
+        private void Card_OnEnterCard(CardSetting cardSetting)
+        {
+            cardSetting.transform.localScale *= _scaleSize;
         }
 
     }

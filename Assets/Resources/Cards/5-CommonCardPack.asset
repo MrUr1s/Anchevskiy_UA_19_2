@@ -12,42 +12,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4cf6de20b2646f4193e999d2dee71e4, type: 3}
   m_Name: 5-CommonCardPack
   m_EditorClassIdentifier: 
+  _isConstruct: 1
   _sideType: 0
   _cost: 5
   _cards:
   - Id: 501
+    Cost: 5
+    Description: "\n      <b>Taunt</b>\n    "
     Name: Booty Bay Bodyguard
     Texture: {fileID: 2800000, guid: ed587b30c2c0b4d4dae19b14b562ebe4, type: 3}
     Attack: 5
     Health: 4
     Type: 0
+    IsBattlecry: 0
+    IsTaunt: 1
+    IsCharge: 0
+    IsTimeEffect: 0
   - Id: 502
+    Cost: 5
+    Description: "\n      <b>Battlecry</b>: Restore 2 Health to all friendly characters\n    "
     Name: Darkscale Healer
     Texture: {fileID: 2800000, guid: ba0c888e544dbc54bb92ed1ae096bdfc, type: 3}
     Attack: 4
     Health: 5
     Type: 0
+    IsBattlecry: 1
+    IsTaunt: 0
+    IsCharge: 0
+    IsTimeEffect: 0
   - Id: 503
+    Cost: 5
+    Description: "\n      <b>Battlecry</b>: Gain +1/+1 for each other friendly minion
+      on the battlefield\n    "
     Name: Frostwolf Warlord
     Texture: {fileID: 2800000, guid: 9f4593a48e103e348a365104c4fe0266, type: 3}
     Attack: 4
     Health: 4
     Type: 0
+    IsBattlecry: 1
+    IsTaunt: 0
+    IsCharge: 0
+    IsTimeEffect: 0
   - Id: 504
+    Cost: 5
+    Description: "\n      Whenever this minion takes damage, gain +3 Attack\n    "
     Name: Gurubashi Berserer
     Texture: {fileID: 2800000, guid: 9e38a10689e5b004abbfe139dde974a3, type: 3}
     Attack: 2
     Health: 7
     Type: 0
+    IsBattlecry: 1
+    IsTaunt: 0
+    IsCharge: 0
+    IsTimeEffect: 0
   - Id: 505
+    Cost: 5
+    Description: "\n      <b>Battlecry</b>: Deal 3 damage to the enemy hero\n    "
     Name: Nightblade
     Texture: {fileID: 2800000, guid: c39f529da285b1d4ea6c011bdb66301b, type: 3}
     Attack: 4
     Health: 4
     Type: 0
+    IsBattlecry: 1
+    IsTaunt: 0
+    IsCharge: 0
+    IsTimeEffect: 0
   - Id: 506
+    Cost: 5
+    Description: "\n      <b>Battlecry</b>: Deal 2 damage\n    "
     Name: Stormpike Commando
     Texture: {fileID: 2800000, guid: 91c8badf91051554ca58dc893b722e9c, type: 3}
     Attack: 4
     Health: 2
     Type: 0
+    IsBattlecry: 1
+    IsTaunt: 0
+    IsCharge: 0
+    IsTimeEffect: 0
